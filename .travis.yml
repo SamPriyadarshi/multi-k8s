@@ -13,7 +13,7 @@ before_install:
   - gcloud auth activate-service-account --key-file service-account.json
   - gcloud config set project skilful-berm-214822
   - gcloud config set compute/zone us-central1-a
-  - gcloud container clusters get-credentials multi-cluster
+  - gcloud container clusters get-credentials multi-k8s
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
 
