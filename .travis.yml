@@ -21,7 +21,18 @@ script:
   - docker run sampriyadarshi/react-test npm test -- --coverage
 
 deploy:
-  provider: script
-  script: bash ./deploy.sh
-  on:
-    branch: master
+  - provider: script
+    script: bash ./deploy-dev.sh
+    on:
+      branch: development
+
+  - provider: script
+    script: bash ./deploy-qa.sh
+    on:
+      branch: qa
+
+  - provider: script
+    script: bash ./deploy-prod.sh
+    on:
+      branch: master
+
