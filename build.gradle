@@ -29,3 +29,22 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 */
+task build
+
+//declare a task to create a zip of the app
+task zip(type: Zip) {
+	from ('.') {
+		include "*"
+        include "bin/"
+		include "client/**"
+		include "k8s/**"
+		include "node_modules/**"
+		include "server/**"
+		include "worker/**"
+	}
+	destinationDir(file("dist"))
+	baseName "trainSchedule"
+}
+
+//declare task dependencies
+build.dependsOn zip
