@@ -43,7 +43,7 @@ task zip(type: Zip) {
 		include "worker/**"
 	}
 	destinationDir(file("dist"))
-	baseName "trainSchedule"
+	baseName "multi-k8s"
 }
 
 //declare task dependencies
