@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     //app = docker.build(DOCKER_IMAGE_NAME)
-                    app = docker.build(DOCKER_IMAGE_NAME, "-f ./server")
+                    app = docker.build(DOCKER_IMAGE_NAME, "./server")
                     //docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles")
                     app.inside {
                         sh 'echo Hello, World!'
