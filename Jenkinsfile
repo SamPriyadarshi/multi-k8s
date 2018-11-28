@@ -85,7 +85,7 @@ pipeline {
                 milestone(1)
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
-                    configs: '/k8s/server-deployment.yaml',
+                    configs: '/var/lib/jenkins/workspace/multi-k8s_master/k8s/server-deployment.yaml',
                     enableConfigSubstitution: true
                 )
             }
