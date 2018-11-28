@@ -1,8 +1,11 @@
+/* import shared library */
+@Library('jenkins-shared-library')_
+
 pipeline {
     agent any
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "sampriyadarshi/train-schedule"
+        DOCKER_IMAGE_NAME = "sampriyadarshi/multi-server-jenkins"
         CANARY_REPLICAS = 0
     }
     stages {
@@ -10,7 +13,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
                 sh './gradlew build --no-daemon'
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+                archiveArtifacts artifacts: 'dist/multi-k8s.zip'
             }
         }
         stage('Build Docker Image') {
@@ -19,7 +22,9 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(DOCKER_IMAGE_NAME)
+                    //app = docker.build(DOCKER_IMAGE_NAME)
+                    app = docker.build(DOCKER_IMAGE_NAME, "-f ./server")
+                    //docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles")
                     app.inside {
                         sh 'echo Hello, World!'
                     }
@@ -39,6 +44,7 @@ pipeline {
                 }
             }
         }
+        /*
         stage('CanaryDeploy') {
             when {
                 branch 'master'
@@ -53,8 +59,8 @@ pipeline {
                     enableConfigSubstitution: true
                 )
             }
-        }
-        stage('SmokeTest') {
+        }*/
+        /*stage('SmokeTest') {
             when {
                 branch 'master'
             }
@@ -70,7 +76,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         stage('DeployToProduction') {
             when {
                 branch 'master'
@@ -79,19 +85,24 @@ pipeline {
                 milestone(1)
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube.yml',
+                    configs: './k8s/server-deployment.yaml',
                     enableConfigSubstitution: true
                 )
             }
         }
     }
     post {
-        cleanup {
+	/*cleanup {
             kubernetesDeploy (
                 kubeconfigId: 'kubeconfig',
                 configs: 'train-schedule-kube-canary.yml',
                 enableConfigSubstitution: true
             )
+        }*/
+        always {
+	    /* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
+            slackNotifier(currentBuild.currentResult)
+            // cleanWs()
         }
     }
 }
