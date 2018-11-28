@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: sampriyadarshi/multi-server
+          image: sampriyadarshi/multi-server:$BUILD_NUMBER
           ports:
             - containerPort: 5000
           env:
