@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: sampriyadarshi/multi-client
+          image: sampriyadarshi/multi-client:$BUILD_NUMBER
           ports:
             - containerPort: 3000
