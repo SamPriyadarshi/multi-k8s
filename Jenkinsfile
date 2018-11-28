@@ -5,7 +5,7 @@ pipeline {
     agent any
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "sampriyadarshi/"
+        DOCKER_IMAGE = "sampriyadarshi/"
         CANARY_REPLICAS = 0
     }
     stages {
@@ -23,9 +23,9 @@ pipeline {
             steps {
                 script {
                     //app = docker.build(DOCKER_IMAGE_NAME)
-                    app = docker.build("${DOCKER_IMAGE_NAME}multi-server", "./server/")
-                    client = docker.build("${DOCKER_IMAGE_NAME}multi-client", "./client/")
-                    worker = docker.build("${DOCKER_IMAGE_NAME}multi-worker", "./worker/")
+                    app = docker.build("${DOCKER_IMAGE}multi-server", "./server/")
+                    client = docker.build("${DOCKER_IMAGE}multi-client", "./client/")
+                    worker = docker.build("${DOCKER_IMAGE}multi-worker", "./worker/")
                     //docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} ./dockerfiles")
                     app.inside {
                         sh 'echo Hello, World!'
