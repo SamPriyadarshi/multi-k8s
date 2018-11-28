@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: worker-deployment
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: stephengrider/multi-worker
+          image: sampriyadarshi/multi-worker
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
