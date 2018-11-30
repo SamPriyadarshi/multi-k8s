@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       labels:
-        component: web
+        component: canary-web
         type: canary
     spec:
       containers:
