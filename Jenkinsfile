@@ -64,6 +64,9 @@ pipeline {
                     configs: 'canray-deployment.yaml',
                     enableConfigSubstitution: true
                 )
+		script {
+			sleep (time: 30)
+		}
             }
         }
         /*stage('SmokeTest') {
