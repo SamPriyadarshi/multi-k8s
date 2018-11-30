@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: client-deployment-canary
+spec:
+  replicas: $CANARY_REPLICAS
+  selector:
+    matchLabels:
+      component: web
+      type: canary
+  template:
+    metadata:
+      labels:
+        component: web
+        type: canary
+    spec:
+      containers:
+        - name: client
+          image: sampriyadarshi/multi-client:$BUILD_NUMBER
+          ports:
+            - containerPort: 3000

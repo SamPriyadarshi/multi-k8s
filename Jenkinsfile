@@ -50,7 +50,7 @@ pipeline {
                 }
             }
         }
-        /*
+       
         stage('CanaryDeploy') {
             when {
                 branch 'master'
@@ -61,11 +61,11 @@ pipeline {
             steps {
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube-canary.yml',
+                    configs: 'canray-deployment.yaml',
                     enableConfigSubstitution: true
                 )
             }
-        }*/
+        }
         /*stage('SmokeTest') {
             when {
                 branch 'master'
