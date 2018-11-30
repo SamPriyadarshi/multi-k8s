@@ -25,6 +25,10 @@ spec:
             backend:
               serviceName: server-cluster-ip-service
               servicePort: 5000
+          - path: /canary/
+            backend:
+              serviceName: canary-client-cluster-ip-service
+              servicePort: 3000
 #     - host: www.k8s-multi.com
 #       http:
 #         paths:
