@@ -96,8 +96,8 @@ pipeline {
                     enableConfigSubstitution: true
                 )
             }
-        }
-    }*/
+        }*/
+    }
     post {
 	/*cleanup {
             kubernetesDeploy (
