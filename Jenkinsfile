@@ -83,19 +83,6 @@ pipeline {
                 }
             }
         }*/
-        /* 
-        stage('DeployToProduction') {
-            when {
-                branch 'master'
-            }
-            steps {
-                milestone(1)
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                   // configs: '**/*.yaml',
-                    enableConfigSubstitution: true
-                )
-            }
         }*/
     }
     post {
