@@ -61,7 +61,7 @@ pipeline {
             steps {
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
-                    configs: 'canray-deployment.yml',
+                    configs: 'canray-deployment.yaml',
                     enableConfigSubstitution: true
                 )
             }
