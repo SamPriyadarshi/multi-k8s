@@ -50,7 +50,7 @@ pipeline {
                 }
             }
         }
-        
+        /*
         stage('CanaryDeploy') {
             when {
                 branch 'master'
@@ -68,7 +68,7 @@ pipeline {
 			sleep (time: 30)
 		}
             }
-        }
+        }*/
         /*stage('SmokeTest') {
             when {
                 branch 'master'
