@@ -39,7 +39,9 @@ pipeline {
             }
             steps {
                 script {
+			
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+			    sh "docker login -u sampriyadarshi -p ${PASSWORD}"
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                         client.push("${env.BUILD_NUMBER}")
