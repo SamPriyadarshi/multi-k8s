@@ -41,7 +41,8 @@ pipeline {
                 script {
 			
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-			    sh "docker login -u sampriyadarshi -p ${PASSWORD}"
+			    //sh "docker login -u sampriyadarshi -p ${PASSWORD}"
+			    echo "$PASSWORD" | docker login -u sampriyadarshi --password-stdin
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                         client.push("${env.BUILD_NUMBER}")
